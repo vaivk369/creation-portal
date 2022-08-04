@@ -239,7 +239,6 @@ export class ContentListComponent implements OnInit {
         prev[curr.name] = curr.count;
         return prev;
       }, {});
-      console.log(this.countByStatus);
     }, err => {
       console.log(err);
     });
