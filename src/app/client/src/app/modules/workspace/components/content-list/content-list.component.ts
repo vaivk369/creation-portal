@@ -220,15 +220,16 @@ export class ContentListComponent implements OnInit {
     }
 
     const req = {
-      "filters": {
-        "objectType": [
-          "Content"
+      filters: {
+        objectType: [
+          'Content'
         ],
-        "status": [],
+        contentType: { '!=': 'Asset' },
+        status: [],
         ...reqFilterSub
       },
-      "limit": 0,
-      "facets": ["status"]
+      limit: 0,
+      facets: ['status']
     };
 
     this.searchService.compositeSearch(req).subscribe(res => {
@@ -238,6 +239,7 @@ export class ContentListComponent implements OnInit {
         prev[curr.name] = curr.count;
         return prev;
       }, {});
+      console.log(this.countByStatus);
     }, err => {
       console.log(err);
     });
