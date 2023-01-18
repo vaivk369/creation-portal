@@ -249,10 +249,10 @@
             <span class="pull-right">
               <button class="sb-btn sb-btn-normal sb-btn-outline-primary" type="button" (click)="openContent(item)">
                 {{resourceService.frmelmnts.btn.open}}</button>
-              <div class="sb-dock-icon-tooltip d-inline-block">
-                <div class="ui dropdown sb-dotted-dropdown" suiDropdown autoClose="itemClick">
-                  <div class="p-8 w-auto"><span class="sb-dotmenu"></span></div>
-                  <div class="menu" suiDropdownMenu *ngIf="item.allowDelete">
+              <div class="sb-dock-icon-tooltip d-inline-block p-8 w-auto">
+                <div *ngIf="item.allowDelete" class="ui dropdown sb-dotted-dropdown" suiDropdown autoClose="itemClick">
+                  <div><span class="sb-dotmenu"></span></div>
+                  <div class="menu" suiDropdownMenu >
                     <div *ngIf="item.allowDelete" class="item" (click)="confirmDelete(item)">
                       {{resourceService?.frmelmnts?.lbl?.delete}}
                     </div>

@@ -9,7 +9,7 @@ import * as _ from 'lodash-es';
   styleUrls: ['./workspace.component.scss']
 })
 export class WorkspaceComponent implements OnInit {
-  tab: string;
+  tab: string = 'mycontent';
   searchService: SearchService;
   public userRoles: any;
   creator: boolean = false;
@@ -25,16 +25,15 @@ export class WorkspaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.userData$.subscribe((user: any) => {
-      if (user && !user.err) {
-        this.userRoles = user?.userProfile?.userRoles;
+    const user = this.userService.userProfile;
+      if (user) {
+        this.userRoles = user?.userRoles;
         this.creator = this.userRoles?.some(e => e === 'CONTENT_CREATOR' || e === 'BOOK_CREATOR');
         this.reviewer = this.userRoles?.some(e => e === 'CONTENT_REVIEWER' || e === 'BOOK_REVIEWER' || e === 'REPORT_REVIEWER');
         this.bothCreatorAndReviewer = this.creator && this.reviewer;
         this.orgAdmin = this.userRoles?.includes('ORG_ADMIN');
         this.decideActiveTab();
       }
-    });
   }
 
   selectTab(tabname) {
